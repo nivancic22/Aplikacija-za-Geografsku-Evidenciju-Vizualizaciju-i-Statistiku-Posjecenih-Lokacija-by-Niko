@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo Travel Evidencija</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div id="sidebar">
+            
+        <div class="card">
+            <div>Ukupno posjećeno:</div>
+            <div id="broj-posjeta" class="stat-broj">0</div>
+            <div>lokacija</div>
+        </div>
+
+        <div class="card">
+            <div>Ukupno putovano:</div>
+            <div class="stat-km"><span id="km-text">0</span> km</div>
+            <!--<small>(PostGIS izračun)</small>-->
+        </div>
+
+        <div id="filter-info" class="filter-alert" style="display: none;">
+            <span class="filter-label">Prikazujem samo:</span>
+            <div class="filter-content">
+                <span id="naziv-filtera" style="font-weight: bold; margin-right: 10px;"></span>
+                <button onclick="ponistiFilter()" class="btn-clear">✕</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Kategorije</h3>
+            <canvas id="mojGraf" width="250" height="250"></canvas>
+        </div>
+
+        <div id="form-container">
+            <h3>Nova lokacija</h3>
+            <input type="text" id="inp-naziv" placeholder="Naziv mjesta">
+            
+            <label><small>Kategorija:</small></label>
+            <select id="inp-kategorija" onchange="provjeriOstalo()">
+                <option value="Grad">Grad</option>
+                <option value="Priroda">Priroda</option>
+                <option value="Park">Park</option>
+                <option value="Muzej">Muzej</option>
+                <option value="Restoran">Restoran</option>
+                <option value="Znamenitost">Znamenitost</option>
+                <option value="Ostalo">Ostalo (upiši sam)</option>
+            </select>
+            
+            <div id="custom-kat-container">
+                <input type="text" id="inp-custom-kat" placeholder="Upiši kategoriju (npr. Plaža, Kafić...)">
+            </div>
+            
+            <textarea id="inp-opis" placeholder="Kratki opis..."></textarea>
+            <input type="hidden" id="inp-lat">
+            <input type="hidden" id="inp-lng">
+            <button onclick="spremilokaciju()">Spremi lokaciju</button>
+            <button onclick="odustani()" style="background-color: #95a5a6;">Odustani</button>
+        </div>
+        
+        <p class="hint">Klikni bilo gdje na mapu da dodaš novu lokaciju.</p>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    
+</body>
+</html>

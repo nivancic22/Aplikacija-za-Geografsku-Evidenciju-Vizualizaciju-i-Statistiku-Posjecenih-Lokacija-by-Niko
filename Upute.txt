@@ -1,0 +1,29 @@
+============================================================
+UPUTE ZA POKRETANJE APLIKACIJE - GEO TRAVEL EVIDENCIJA
+============================================================
+
+1. INSTALACIJA
+Otvorite terminal u mapi projekta i instalirajte potrebne pakete:
+   pip install -r requirements.txt
+
+2. KONFIGURACIJA BAZE 
+Aplikacija koristi lokalnu PostgreSQL bazu. Kako bi se aplikacija mogla spojiti
+na Vašu bazu, morate kreirati konfiguracijsku datoteku:
+
+1. U mapi projekta pronađite datoteku '.env.example'.
+2. Kopirajte je i preimenujte kopiju u '.env'
+3. Otvorite '.env' datoteku i upišite lokalnu lozinku Vašeg PostgreSQL korisnika 
+
+Primjer sadržaja .env datoteke:
+DB_USER=postgres
+DB_PASSWORD=VašaStvarnaLozinka
+
+3. KREIRANJE BAZE I TABLICA
+Prije prvog pokretanja potrebno je inicijalizirati bazu.
+Pokrenite setup_db.py skriptu koja će automatski kreirati bazu 'gisdb' i potrebne tablice:
+
+4. POKRETANJE APLIKACIJE
+	1. Pokrenite aplikaciju:
+   		python app.py
+
+	2. Stisnite na dobiveni link
